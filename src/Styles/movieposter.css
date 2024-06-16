@@ -1,9 +1,0 @@
-@media (max-width: 640px) {
-  .movie-poster {
-    margin-top: 20px;
-  }
-  .movie-poster img {
-    width: 160px !important;
-    height: 250px !important;
-  }
-}

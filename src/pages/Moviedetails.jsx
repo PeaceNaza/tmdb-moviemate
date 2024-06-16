@@ -35,6 +35,10 @@ const Moviedetails = () => {
     isFavorite ? "text-[#060606]" : "text-[#d9d9d9]"
   }`;
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   if (isLoading) {
     return (
       <div className="text-white">
@@ -94,7 +98,7 @@ const Moviedetails = () => {
       </div>
 
       <div className="my-20">
-        <Button variant="primary" onClick={() => navigate(-1)}>
+        <Button variant="primary" onClick={handleGoBack}>
           Go back
         </Button>
       </div>

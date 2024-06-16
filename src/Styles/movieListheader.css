@@ -1,6 +1,0 @@
-@media (max-width: 640px) {
-  header .navbar {
-    display: grid;
-    place-items: center !important;
-  }
-}
