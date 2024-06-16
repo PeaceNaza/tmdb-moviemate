@@ -1,8 +1,6 @@
 @media (max-width: 640px) {
- header .navbar {
- text-align: center !important;
-  background-color: white;
-  
- } 
- 
+  header .navbar {
+    text-align: center !important;
+    background-color: white;
+  }
 }

@@ -1,17 +1,14 @@
 @media (max-width: 640px) {
   .card {
-   width: 330px;
-  
-  } 
+    width: 330px;
+  }
   .details-header {
-   text-align: center;
-   text-wrap: wrap;
-   
-  } 
+    text-align: center;
+    text-wrap: wrap;
+  }
 
   .overview-text {
     font-size: 16px !important;
-
   }
 
   .movie-genre {
@@ -21,5 +18,4 @@
     margin-left: 100px !important;
     margin-bottom: 15px !important;
   }
- }
- 
+}

@@ -6,7 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
   return (
-    <div className="justify-center items-center">
+    <div className="px-5 md:px-20">
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />

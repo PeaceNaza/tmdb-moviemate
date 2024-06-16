@@ -1,24 +1,18 @@
 @media (max-width: 640px) {
-main .text-2xl {
-  text-align: center;
+  main .text-2xl {
+    text-align: center;
+  }
+
+  .movie-conrtainer {
+    margin-left: 25px !important;
+    height: 665px !important;
+  }
+
+  .details-button {
+    text-align: start !important;
+  }
 }
-
-.movie-conrtainer {
-  margin-left: 25px !important;
-  height: 665px !important;
-} 
-
-.details-button {
-  text-align: start !important;
-}
-
-}
-
 
 .details-button:hover {
   text-decoration: underline;
-  
-} 
-
-
-
+}

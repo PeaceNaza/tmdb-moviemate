@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../src/Styles/moviedetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import useStore from "../store";
 import "../../src/Styles/header.css";
 import Header from "../components/Layouts/Header";
+import Button from "../components/Button";
 
 const Moviedetails = () => {
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   const {
     data: movieDetails,
@@ -19,13 +21,19 @@ const Moviedetails = () => {
 
     queryFn: () =>
       fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=11eec6b26256cd542c6f92ff289594c5`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=11eec6b26256cd542c6f92ff289594c5`,
       ).then((res) => res.json()), //fetching data from tmdb api
   });
 
   const favoriteMovies = useStore((state) => state.favoriteMovies);
 
   const toggleFavoriteMovie = useStore((state) => state.toggleFavoriteMovie);
+
+  const isFavorite = movieDetails && favoriteMovies.includes(movieDetails.id);
+
+  const heartClass = `cursor-pointer h-8 w-7 mr-5 ${
+    isFavorite ? "text-[#060606]" : "text-[#d9d9d9]"
+  }`;
 
   if (isLoading) {
     return (
@@ -39,95 +47,57 @@ const Moviedetails = () => {
   }
 
   if (error) {
-    return (
-      <p className="text-red-600 font-bold text-lg">Something went wrong</p>
-    );
+    return <p className="text-red-600 font-light text-lg">Something went wrong</p>;
   }
 
   return (
     <>
-      <section className="text-black bg-white min-h-screen w-full">
-        <Header />
+      <Header />
+      <h1 className="text-center font-medium text-5xl my-6">{movieDetails.title}</h1>
 
-        <div className="justify-center items-center flex flex-col flex-1">
-          <h1 className="details-header text-center font-bold text-3xl mt-2">
-            {movieDetails.title}
-          </h1>
+      <div className="mx-auto w-3/4 border flex rounded-md">
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+          alt={movieDetails.title}
+          className="w-1/2 rounded-l-md"
+        />
 
-          <div className="card flex-wrap text-secondary-200 bg-white lg:w-[900px] sm:w-[380px] lg:h-[450px]  mt-4 border">
-            {movieDetails && (
-              <div className=" grid lg:md:grid-cols-2 sm:grid-cols-1 gap-2 text-sm">
-                <div>
-                  {" "}
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
-                    alt={movieDetails.title}
-                    className="w-full h-[449px] rounded"
-                  />
-                </div>
-                <div className=" flex flex-col justify-between sm:pl-2">
-                  <div className="flex justify-between gap-12 pl-2 mt-2">
-                    <div className="w-[70%]">
-                      <p className="overview-text lg:text-[16px] sm:md:text-[16px] leading-6 ml-3 text-secondary-500">
-                        {movieDetails.overview}
-                      </p>{" "}
-                    </div>
+        <div className="w-1/2 p-10 text-gray-500">
+          <p className="text-xl font-extralight">{movieDetails.overview}</p>
 
-                    <div>
-                      <button
-                        onClick={() => toggleFavoriteMovie(movieDetails.id)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faHeart}
-                          className={`heart  h-8 w-7 mr-5 
-         ${
-           favoriteMovies.includes(movieDetails.id)
-             ? "text-secondary-200"
-             : "text-secondary-400"
-         }`}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <div className=" ml-2 leading-10">
-                    <p className="movie-genre lg:sm:md:text-[14px] mt-2 mb-1 ml-3 text-secondary-500">
-                      {movieDetails.genres
-                        .map((genre) => genre.name)
-                        .join(", ")}
-                    </p>
+          <div className="flex justify-between my-5 text-xs">
+            <div className="flex gap-1">
+              <FontAwesomeIcon icon={faStar} className="text-yellow-500 mt-[1px]" />
+              <span className="text-red-500">{movieDetails.vote_average}</span>
+              <span>({movieDetails.vote_count}+)</span>
+            </div>
 
-                    <div className="flex justify-between ml-3 text-xs leading-10">
-                      <p>
-                        <FontAwesomeIcon
-                          icon={faStar}
-                          className="text-yellow-500 mr-1"
-                        />
-                        <span className="text-secondary-300 mr-1">
-                          {movieDetails.vote_average}{" "}
-                        </span>
-                        <span className="text-secondary-500">
-                          ({movieDetails.vote_count}+)
-                        </span>
-                      </p>
-                      <p className="mr-5 text-secondary-500">
-                        {movieDetails.release_date}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+            <div>
+              <p className="mr-5 text-secondary-500">{movieDetails.release_date}</p>
+            </div>
+          </div>
+
+          <div className="flex justify-between mt-10">
+            <p className="text-sm text-purple-600 mt-2">
+              {movieDetails.genres.map((genre) => genre.name).join(", ")}
+            </p>
+
+            <FontAwesomeIcon
+              icon={faHeart}
+              className={heartClass}
+              onClick={() => toggleFavoriteMovie(movieDetails.id)}
+            />
+
+            <div className="flex justify-between ml-3 text-xs leading-10"></div>
           </div>
         </div>
-        <div className="bg-inherit mb-5">
-          <button
-            className="back-button bg-primary text-secondary-200 hover:bg-secondary-100 hover:text-primary border border-secondary-100 shadow-inner rounded mt-8 px-7 py-1 ml-16"
-            onClick={() => window.history.back()}
-          >
-            Go back
-          </button>
-        </div>
-      </section>
+      </div>
+
+      <div className="my-20">
+        <Button variant="primary" onClick={() => navigate(-1)}>
+          Go back
+        </Button>
+      </div>
     </>
   );
 };

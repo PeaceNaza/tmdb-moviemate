@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import "../../src/Styles/movieLists.css";
-import MovieListHeader from "../components/Layouts/MovieListHeader";
+import Header from "../components/Layouts/Header";
 import { useState } from "react";
 
 const MovieLists = () => {
@@ -15,7 +15,7 @@ const MovieLists = () => {
   const { data, isLoading, error } = useQuery({
     queryFn: () =>
       fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=11eec6b26256cd542c6f92ff289594c5&page=${page}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=11eec6b26256cd542c6f92ff289594c5&page=${page}`,
       ).then((res) => res.json()),
     queryKey: ["movies", page],
     refetchOnWindowFocus: true,
@@ -37,9 +37,7 @@ const MovieLists = () => {
   }));
 
   const displayMovies = data?.results
-    ?.filter((movie) =>
-      movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    ?.filter((movie) => movie.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(0, moviePerPage);
 
   if (isLoading) {
@@ -59,68 +57,48 @@ const MovieLists = () => {
 
   return (
     <>
-      <main className=" min-h-screen min-w-full pb-10">
-        <MovieListHeader />
+      <Header />
+      <main className="mb-20">
+        <h1 className="text-3xl font-extrabold my-10">Lists of movies</h1>
 
-        <h1 className="text-black font-extrabold text-4xl mb-3 lg:ml-[44px] md:ml-[25px] sm:ml-[25px] lg:md:sm:text-start ">
-          Lists of movies
-        </h1>
-
-        <div className="movie-lists flex flex-wrap gap-10 justify-center mr-5">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
           {displayMovies?.map((movie) => (
-            <div
-              key={movie.id}
-              className="movie-conrtainer justify-center bg-[#ffffff8b]  rounded-lg border w-[350px] h-[660px] mx-3 my-3"
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
-                className="w-full h-[500px] rounded-t-lg"
-              />
+            <div key={movie.id} to={`/movie/${movie.id}`}>
+              {" "}
+              <div className="bg-[#ffffffd8] rounded-lg border">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="rounded-t-lg"
+                />
 
-              <div className="detail flex justify-between">
-                <Link
-                  to={`/movie/${movie.id}`}
-                  className="details-button text-2xl mt-1 mx-5 text-secondary-100 mb-1"
-                >
-                  {movie.title}
-                </Link>
-                <button onClick={() => toggleFavoriteMovie(movie.id)}>
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className={`heart  h-6 w-5 mt-2 mr-4 
-         ${
-           favoriteMovies.includes(movie.id)
-             ? "text-secondary-200"
-             : "text-secondary-400"
-         }`}
-                  />
-                </button>
-              </div>
-              <div className="grid grid-cols-1">
-                <p className="text-sm mx-5 mb-2 text-secondary-500">
-                  {movie.overview.slice(0, 80)}....
-                </p>
-                <div className="flex justify-between mt-1 mx-5">
-                  <div>
-                    <p className="text-[10px]">
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        className="text-yellow-500 mr-1"
-                      />
-                      <span className="text-secondary-300 mr-1">
-                        {movie.vote_average}
-                      </span>{" "}
-                      <span className="text-secondary-500">
-                        ({movie.vote_count}+)
-                      </span>{" "}
-                    </p>
+                <div className="flex justify-between my-2">
+                  <Link
+                    to={`/movie/${movie.id}`}
+                    className="text-2xl mt-1 mx-5 text-[#6563d2] mb-1"
+                    title={movie.title}
+                  >
+                    {movie.title.length > 20 ? movie.title.slice(0, 19) + "..." : movie.title}
+                  </Link>
+                  <button onClick={() => toggleFavoriteMovie(movie.id)}>
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className={`heart  h-6 w-5 mt-2 mr-4 
+         ${favoriteMovies.includes(movie.id) ? "text-[#060606]" : "text-[#d9d9d9]"}`}
+                    />
+                  </button>
+                </div>
+
+                <p className="text-sm mx-5 mb-2 text-[#6a7587]">{movie.overview.slice(0, 74)}...</p>
+                <div className="flex justify-between m-5 text-xs text-gray-500">
+                  <div className="flex gap-1">
+                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 mt-[1px]" />
+                    <span className="text-red-500">{movie.vote_average}</span>{" "}
+                    <span>({movie.vote_count}+)</span>{" "}
                   </div>
+
                   <div>
-                    <p className="text-[10px] text-secondary-500">
-                      {" "}
-                      {movie.release_date}
-                    </p>
+                    <p>{movie.release_date}</p>
                   </div>
                 </div>
               </div>
@@ -129,7 +107,7 @@ const MovieLists = () => {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-20">
           <button
             className="bg-white text-[#2A303C] px-3 py-1 mx-2 rounded-md shadow disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

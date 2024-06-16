@@ -25,9 +25,9 @@ const useStore = create(
       }),
       {
         name: "favorite-movies", //name of the store
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 
 export default useStore;

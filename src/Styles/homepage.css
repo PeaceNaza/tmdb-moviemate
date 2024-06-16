@@ -1,37 +1,32 @@
-
 @media (max-width: 640px) {
   main {
     background-color: inherit;
   }
   .home-text {
-  font-size: 47px !important;
-  margin-left: 9px !important;
-  } 
+    font-size: 47px !important;
+    margin-left: 9px !important;
+  }
   .getStarted-container {
     margin-left: 11px !important;
-  
   }
   .poster-1 {
     margin-right: 180px;
     margin-top: 15px;
-    
-  } 
+  }
   .poster-2 {
     margin-left: 175px;
     margin-top: -20px !important;
   }
-} 
-
+}
 
 .get-started:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color-200);
   border: 2px solid var(--secondary-color-100);
-} 
+}
 
 .lucky:hover {
   background-color: var(--secondary-color-100);
   color: var(--primary-color);
   border: 2px solid var(--secondary-color-100);
 }
-
