@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 
 import { useQuery } from "@tanstack/react-query";
-import "../../Styles/movieposter.css";
 
 const Poster = ({ movieId }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["movie-poster", movieId],
     queryFn: () =>
       fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=11eec6b26256cd542c6f92ff289594c5`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=11eec6b26256cd542c6f92ff289594c5`,
       )
         .then((res) => res.json())
         .then((data) => data.poster_path),
@@ -26,9 +25,7 @@ const Poster = ({ movieId }) => {
   }
 
   if (error) {
-    return (
-      <p className="text-red-600 font-extralight text-lg">Something went wrong</p>
-    );
+    return <p className="text-red-600 font-extralight text-lg">Something went wrong</p>;
   }
 
   const imageUrl = "https://image.tmdb.org/t/p/w342/";

@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import "../../src/Styles/moviedetails.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import useStore from "../store";
-import "../../src/Styles/header.css";
 import Header from "../components/Layouts/Header";
 import Button from "../components/Button";
 
@@ -35,9 +33,6 @@ const Moviedetails = () => {
     isFavorite ? "text-[#060606]" : "text-[#d9d9d9]"
   }`;
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
 
   if (isLoading) {
     return (
@@ -98,7 +93,7 @@ const Moviedetails = () => {
       </div>
 
       <div className="my-20">
-        <Button variant="primary" onClick={handleGoBack}>
+        <Button variant="primary" onClick={() => navigate(-1)}>
           Go back
         </Button>
       </div>

@@ -3,7 +3,6 @@ import useStore from "../store";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import "../../src/Styles/movieLists.css";
 import Header from "../components/Layouts/Header";
 import { useState } from "react";
 
@@ -31,7 +30,7 @@ const MovieLists = () => {
 
   const toggleFavoriteMovie = useStore((state) => state.toggleFavoriteMovie);
 
-  const { searchTerm, setSearchTerm } = useStore((state) => ({
+  const { searchTerm } = useStore((state) => ({
     searchTerm: state.searchTerm,
     setSearchTerm: state.setSearchTerm,
   }));

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Layouts/Header";
-import "../../src/Styles/homepage.css";
 import Poster from "../components/Layouts/Poster";
 import Button from "../components/Button";
 
