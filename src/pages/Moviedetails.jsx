@@ -54,14 +54,14 @@ const Moviedetails = () => {
       <Header />
       <h1 className="text-center font-medium text-5xl my-6">{movieDetails.title}</h1>
 
-      <div className="mx-auto w-3/4 border flex rounded-md">
+      <div className="mx-auto md:flex-row md:w-3/4 border flex xs:flex-col rounded-md">
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
           alt={movieDetails.title}
-          className="w-1/2 rounded-l-md"
+          className="md:w-1/2 rounded-l-md"
         />
 
-        <div className="w-1/2 p-10 text-gray-500">
+        <div className="md:w-1/2 p-10 text-gray-500">
           <p className="text-xl font-extralight">{movieDetails.overview}</p>
 
           <div className="flex justify-between my-5 text-xs">
@@ -93,7 +93,7 @@ const Moviedetails = () => {
       </div>
 
       <div className="my-20">
-        <Button variant="primary" onClick={() => navigate(-1)}>
+        <Button variant="primary"  onClick={() => navigate(-1)}>
           Go back
         </Button>
       </div>

@@ -7,14 +7,14 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <main className="mt-10 mb-20 flex">
-        <div className="w-1/2">
-          <h1 className="text-2xl md:text-4xl lg:text-7xl mt-36">
+      <main className="md:mt-10 xs:-mt-24 mb-20 gap-5 flex md:flex-row xs:flex-col w-full">
+        <div className="sm:w-1/2">
+          <h1 className="text-3xl md:text-4xl lg:text-7xl mt-36">
             Learn more about your favourite movies
           </h1>
           {/**/}
 
-          <div className="mt-10 flex gap-8">
+          <div className="mt-10 flex sm:gap-8 xs:gap-3">
             <Link to={"/movies"}>
               <Button variant="primary">Get started</Button>
             </Link>

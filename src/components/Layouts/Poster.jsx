@@ -36,7 +36,7 @@ const Poster = ({ movieId }) => {
       <img
         src={posterurl}
         alt="movie poster"
-        className=" lg:h-[400px] lg:w-[320px] sm:w-[200px] sm:h-[350px] shadow-xl transform transition-transform duration-300 hover:scale-[1.08]"
+        className=" md:h-[400px] md:w-[320px] xs:w-[200px] sm:h-[350px] shadow-xl transform transition-transform duration-300 hover:scale-[1.08]"
       />
     </div>
   );
