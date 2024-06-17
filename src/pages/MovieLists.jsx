@@ -57,7 +57,7 @@ const MovieLists = () => {
   return (
     <>
       <Header />
-      <main className="mb-20">
+      <main className="mb-20 h-screen bg-white">
         <h1 className="text-3xl font-extrabold my-10 text-black">Lists of movies</h1>
 
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
@@ -108,17 +108,17 @@ const MovieLists = () => {
         {/* Pagination */}
         <div className="flex justify-center mt-20">
           <button
-            className="bg-white text-[#2A303C] px-3 py-1 mx-2 rounded-md shadow disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-white text-[#2A303C] px-3 py-1 mx-2 rounded-md shadow disabled:opacity-50 disabled:cursor-not-allowed text-xs"
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
           >
             Previous
           </button>
-          <span className=" mx-2 my-2 text-black">
+          <span className=" mx-2 my-2 text-black text-xs">
             Page {page} / {totalPages}
           </span>
           <button
-            className="bg-white text-[#2A303C] px-3 py-1 mx-2 rounded-md shadow disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-white text-[#2A303C] px-3 py-1 mx-2 rounded-md shadow disabled:opacity-50 disabled:cursor-not-allowed text-xs"
             onClick={() => setPage((prev) => prev + 1)}
             disabled={page === totalPages}
           >
