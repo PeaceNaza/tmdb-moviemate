@@ -52,7 +52,7 @@ const Moviedetails = () => {
   return (
     <>
       <Header />
-      <h1 className="text-center font-medium text-5xl my-6">{movieDetails.title}</h1>
+      <h1 className="text-center font-medium text-5xl my-6 text-black">{movieDetails.title}</h1>
 
       <div className="mx-auto md:flex-row md:w-3/4 border flex xs:flex-col rounded-md">
         <img
@@ -83,7 +83,7 @@ const Moviedetails = () => {
 
             <FontAwesomeIcon
               icon={faHeart}
-              className={heartClass}
+              className={`${heartClass} mt-1 ml-2`}
               onClick={() => toggleFavoriteMovie(movieDetails.id)}
             />
 
@@ -92,7 +92,7 @@ const Moviedetails = () => {
         </div>
       </div>
 
-      <div className="my-20">
+      <div className="my-20 xs:pb-10">
         <Button variant="primary"  onClick={() => navigate(-1)}>
           Go back
         </Button>

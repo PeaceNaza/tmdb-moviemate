@@ -11,12 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --primary-color: #ffffff;
-  --secondary-color-100: #6563d2;
-  --secondary-color-200: #060606;
-  --secondary-color-300: red;
-  --secondary-color-400: #d9d9d9;
-  --secondary-color-500: #6a7587;
+  
 }
 
 body {
@@ -31,13 +26,13 @@ body {
     Cantarell,
     "Helvetica Neue",
     sans-serif;
-  background-color: var(--primary-color);
+  background-color: white;
   margin: 0;
   padding: 0;
   outline: none;
   text-decoration: none;
   list-style-type: none;
-  /* min-width: 100vw;
+  /*min-width: 100vw;
   min-height: 100vh;*/
   position: relative;
 }

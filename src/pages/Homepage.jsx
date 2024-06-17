@@ -7,8 +7,8 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <main className="md:mt-10 xs:-mt-24 mb-20 gap-5 flex md:flex-row xs:flex-col w-full">
-        <div className="sm:w-1/2">
+      <main className="md:mt-10 xs:-mt-24 mb-20 gap-5 flex md:flex-row xs:flex-col">
+        <div className="w-1/2">
           <h1 className="text-3xl md:text-4xl lg:text-7xl mt-36">
             Learn more about your favourite movies
           </h1>
@@ -25,12 +25,12 @@ const Homepage = () => {
           </div>
         </div>
 
-        <div className="w-1/2">
-          <div className="grid grid-cols-6 gap-1">
-            <div className="col-start-1 col-span-3">
+        <div className="w-1/2 mb-10">
+          <div className="grid xs:grid-cols-6 gap-1">
+            <div className="col-start-1 xs:col-span-3">
               <Poster movieId={183} />
             </div>
-            <div className="col-start-1 col-end-3"> </div>
+            <div className="col-start-1 xs:col-end-3"> </div>
             <div className="col-end-7 col-span-3">
               <Poster movieId={20} />
             </div>

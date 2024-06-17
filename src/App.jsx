@@ -6,7 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
   return (
-    <div className="px-5 md:px-20 h-screen">
+    <div className="px-5 md:px-20 h-screen bg-white">
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />

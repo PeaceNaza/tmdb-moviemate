@@ -58,7 +58,7 @@ const MovieLists = () => {
     <>
       <Header />
       <main className="mb-20">
-        <h1 className="text-3xl font-extrabold my-10">Lists of movies</h1>
+        <h1 className="text-3xl font-extrabold my-10 text-black">Lists of movies</h1>
 
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
           {displayMovies?.map((movie) => (

@@ -32,11 +32,11 @@ const Poster = ({ movieId }) => {
   const posterurl = `${imageUrl}${data}`;
 
   return (
-    <div className="movie-poster bg-inherit">
+    <div className="bg-inherit">
       <img
         src={posterurl}
         alt="movie poster"
-        className=" md:h-[400px] md:w-[320px] xs:w-[200px] sm:h-[350px] shadow-xl transform transition-transform duration-300 hover:scale-[1.08]"
+        className=" xs:w-[250px] xs:h-[220px] md:h-[400px] md:w-[320px]  shadow-xl transform transition-transform duration-300 hover:scale-[1.08]"
       />
     </div>
   );
